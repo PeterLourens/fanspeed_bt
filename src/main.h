@@ -5,10 +5,7 @@
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
 
-#include "BluetoothSerial.h"
-
-//#include <LittleFS.h>
-
+#include "task_bluetooth.h"
 // function declarations
 
 #endif
