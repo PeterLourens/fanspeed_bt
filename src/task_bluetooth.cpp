@@ -5,7 +5,7 @@ TaskHandle_t task_bluetooth;
 
 void start_task_bluetooth(void) {
 
-    xTaskCreate(task_bluetooth_code, "task_valvectrl", 10000, NULL, 8, &task_bluetooth);
+    xTaskCreate(task_bluetooth_code, "task_bluetooth", 10000, NULL, 8, &task_bluetooth);
 
 }
 

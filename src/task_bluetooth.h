@@ -12,6 +12,3 @@ void start_task_bluetooth(void);
 void task_bluetooth_code(void *pvParameters);
 
 #endif
-
-
-#include "BluetoothSerial.h"
