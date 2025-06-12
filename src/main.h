@@ -4,7 +4,10 @@
 #include <Arduino.h>
 #include <freertos/FreeRTOS.h>
 #include <freertos/task.h>
-#include <LittleFS.h>
+
+#include "BluetoothSerial.h"
+
+//#include <LittleFS.h>
 
 // function declarations
 
