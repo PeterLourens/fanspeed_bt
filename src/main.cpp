@@ -6,31 +6,40 @@ void onReceive(const uint8_t *mac_addr, const uint8_t *incomingData, int len) {
     memcpy(fanspeed, incomingData, len);
     fanspeed[len] = '\0';  // Null-terminate the received string
 
-    Serial.printf("Received: Fanspeed: %s\n", fanspeed);
+    Serial.printf("\n\nReceived fanspeed: %s\n", fanspeed);
 
-	if (fanspeed == "low") {
-        digitalWrite(32,HIGH);
+	//Char array is received, convert to int
+	long int fanspeed_int = strtol(fanspeed, NULL, 10);
+	
+	Serial.printf("\nReceived fanspeed number: %s\n", fanspeed_int);
+
+	if (fanspeed_int > 0 && fanspeed_int <= 20 ) {
+        //Low speed
+		digitalWrite(32,HIGH);			//Green LED on
 		digitalWrite(33,LOW);
         digitalWrite(25,LOW);
         digitalWrite(26,LOW);
     }
-	else if (fanspeed == "medium") {
-        digitalWrite(32,LOW);
-		digitalWrite(33,HIGH);
+	else if (fanspeed_int > 20 && fanspeed_int <= 50) {
+        //Medium speed
+		digitalWrite(32,LOW);
+		digitalWrite(33,HIGH);			//Yellow LED on
         digitalWrite(25,LOW);
         digitalWrite(26,LOW);
     }
-	if (fanspeed == "high") {
-        digitalWrite(32,LOW);
+	if (fanspeed_int > 50 && fanspeed_int < 100) {
+        //High speed
+		digitalWrite(32,LOW);
 		digitalWrite(33,LOW);
-        digitalWrite(25,HIGH);
+        digitalWrite(25,HIGH);			//Red LED On
         digitalWrite(26,LOW);
     }
 	else {
-        digitalWrite(32,LOW);
+        //Outside range
+		digitalWrite(32,LOW);
 		digitalWrite(33,LOW);
         digitalWrite(25,LOW);
-        digitalWrite(26,HIGH);
+        digitalWrite(26,HIGH);			//Blue LED on
     }
 }
 
@@ -54,5 +63,5 @@ void setup() {
 }
 
 void loop() {
-    //vTaskDelay(pdMS_TO_TICKS(5000));
+
 }
